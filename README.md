@@ -41,7 +41,7 @@ By applying an empirical percentile threshold ($t \approx 0.8657$), the model el
 ## 6. Repository Structure
 
 - `submission.csv`: Calibrated predictions (2,000 evaluation samples)
-- `notebook.ipynb`: End-to-end data pipeline, FiLM implementation & training
+- `lunar-classification.ipynb`: End-to-end data pipeline, FiLM implementation & training
 - `README.md`: Technical project documentation
 
 ---
