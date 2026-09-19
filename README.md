@@ -72,3 +72,23 @@ By applying an empirical percentile threshold ($t \approx 0.8657$), the model el
 
 The trained model checkpoint (`final_lunar_model.pth`) is hosted externally:
 - [Download final_lunar_model.pth](https://drive.google.com/file/d/18heVyWNB0XFpPO12lAARpHRfU4wauCLk/view?usp=sharing)
+
+---
+
+## 8. Hardware Requirements & Inference Instructions
+
+### Hardware Requirements
+- **OS:** Linux / Windows 10/11 / macOS
+- **Compute:** 1x NVIDIA GPU with $\ge 4\text{ GB}$ VRAM (e.g., T4, RTX 3050+) or standard x86-64 CPU (inference runs in $< 60$ seconds).
+- **RAM:** $\ge 8\text{ GB}$ System Memory.
+- **Storage:** $\ge 2\text{ GB}$ available disk space for dependencies and image evaluation data.
+
+### Reproduction & Inference Instructions
+Reproduce `submission.csv` in **1 single command**:
+
+```bash
+# 1. Install dependencies
+pip install -r requirements.txt
+
+# 2. Run inference in one command
+python inference.py --weights final_lunar_model.pth --test_csv test.csv --test_dir test_images/ --output submission.csv --threshold 0.8329
