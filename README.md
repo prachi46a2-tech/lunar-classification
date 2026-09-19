@@ -1,3 +1,25 @@
+# Lunar Topographic Classification Under Variable Solar Illumination (SunFiLMNet)
+
+A deep learning framework engineered to classify lunar micro-topography into positive relief (rises/mounds) and negative relief (depths/craters) from single-channel orbital imagery, resolving illumination-induced topographic inversion without geometric distortion.
+
+---
+
+## 1. Problem Formulation & Illumination Physics
+
+Monocular lunar orbital imagery presents a fundamental computer vision ambiguity known as **topographic inversion**:
+- Optical orbital sensors capture reflected sunlight without intrinsic depth information.
+- Illumination direction dictates shadow placement:
+  - An eastward depression (crater) exhibits cast shadows on its eastern rim and high reflectance on its western slope.
+  - An eastward elevation (mound) exhibits specular highlights on its eastern face and trailing shadows on its western slope.
+- Without accounting for the solar illumination vector, convolutional neural networks are prone to confusing concave depressions with convex mounds.
+
+Rather than rotating images geometrically—which introduces border padding, black triangular artifacts, and bilinear interpolation blur—this architecture resolves solar ambiguity directly at the feature representation level via **Feature-wise Linear Modulation (FiLM)**.
+
+---
+
+## 2. Model Architecture: SunFiLMNet
+
+`SunFiLMNet` conditions intermediate convolutional feature representations dynamically on the solar illumination vector:
 ### 2.1 Inputs
 - **Image Domain:** 256×256 single-channel grayscale lunar surface crops.
 - **Solar Vector:** Continuous azimuth angle $\theta \in [0^\circ, 360^\circ)$ transformed into a 2D directional unit vector:
